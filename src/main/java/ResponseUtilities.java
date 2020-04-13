@@ -7,21 +7,12 @@ import java.util.List;
 public class ResponseUtilities {
 
     public static String getHeader(CloseableHttpResponse response, String headerName) {
-        Header[] headers = response.getAllHeaders();
-        List<Header> httpHeaders = Arrays.asList(headers);
-        String returnHeader = "";
+        List<Header> httpHeaders = Arrays.asList(response.getAllHeaders());
 
-        for (Header header : httpHeaders){
-            if(headerName.equalsIgnoreCase(header.getName())){
-                returnHeader = header.getValue();
-            }
-        }
-
-        if(returnHeader.isEmpty()){
-            throw new RuntimeException("Didn't find the header: " + headerName);
-
-        }
-        return returnHeader;
+        Header matchedHeader = httpHeaders.stream()
+                                .filter(header -> headerName.equalsIgnoreCase(header.getName()))
+                                .findFirst().orElseThrow(() -> new RuntimeException("Didn't finde the header"));
+        return matchedHeader.getValue();
     }
 
     public static boolean isHeaderPresent(CloseableHttpResponse response, final String headerName){
@@ -29,6 +20,6 @@ public class ResponseUtilities {
         List<Header> httpHeaders = Arrays.asList(headers);
 
         return httpHeaders.stream()
-                .anyMatch(header -> header.getName().equalsIgnoreCase(headerName));
+                .anyMatch(header  -> header.getName().equalsIgnoreCase(headerName));
     }
 }
