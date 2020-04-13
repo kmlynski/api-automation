@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class ResponseHeaders extends BaseTest {
 
@@ -44,5 +45,16 @@ public class ResponseHeaders extends BaseTest {
         String xratevalue = ResponseUtilities.getHeader(response,"X-RateLimit-Limit");
 
         assertEquals(xratevalue, "60");
+    }
+
+    @Test
+    public void isETagPresent() throws IOException {
+        HttpGet get = new HttpGet( BASE_URL );
+
+        response = client.execute(get);
+        boolean isETagPresentInResponse = ResponseUtilities.isHeaderPresent(response, "etag");
+
+        assertTrue(isETagPresentInResponse);
+
     }
 }
