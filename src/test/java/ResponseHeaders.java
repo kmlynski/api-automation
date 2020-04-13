@@ -12,9 +12,9 @@ import static org.testng.Assert.assertEquals;
 public class ResponseHeaders extends BaseTest {
 
     @Test
-    public void contentTypeInJson() throws IOException{
+    public void isContentTypeInJsonTest() throws IOException{
 
-        HttpGet get = new HttpGet(BASE_URL );
+        HttpGet get = new HttpGet( BASE_URL );
 
         response = client.execute(get);
 
@@ -25,14 +25,24 @@ public class ResponseHeaders extends BaseTest {
     }
 
     @Test
-    public void serverIsGitHub() throws IOException{
+    public void isServerGitHubTest() throws IOException{
 
-        HttpGet get = new HttpGet(BASE_URL );
+        HttpGet get = new HttpGet( BASE_URL );
 
         response = client.execute(get);
 
         String header = ResponseUtilities.getHeader(response, "Server");
 
         assertEquals(header, "GitHub.com");
+    }
+
+    @Test
+    public void isXRateLimitSixtyTest() throws IOException {
+        HttpGet get = new HttpGet( BASE_URL );
+
+        response = client.execute(get);
+        String xratevalue = ResponseUtilities.getHeader(response,"X-RateLimit-Limit");
+
+        assertEquals(xratevalue, "60");
     }
 }
