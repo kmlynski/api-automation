@@ -1,6 +1,9 @@
 # api-automation
 Repository include automated tests of an github API  
 
+## Prerequisites
+* Java 8+
+
 ## Setup
 
 * Clone the repo
@@ -29,8 +32,13 @@ Repository include automated tests of an github API
 
 * You can change default username and server in a config file: conf/config.conf.json
 * You can also define them as system variables:
-
+Linux:
   ```
   export TEST_USER = <github-username> &&
   export BASE_URL=<github-server> &&
+  ```
+ Windows:
+ ```
+  SETX TEST_USER <github-username>
+  SETX BASE_URL <github-server>
   ```
