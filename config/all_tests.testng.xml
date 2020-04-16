@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="all_tests">
+    <parameter name="config" value="config.conf.json"/>
+    <test name="all_tests" >
+        <classes>
+            <class name="ResponseHeaders"/>
+            <class name="ResponseBody"/>
+            <class name="Get200"/>
+            <class name="Get401"/>
+            <class name="Get404"/>
+        </classes>
+    </test>
+</suite>
