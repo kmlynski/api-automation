@@ -99,7 +99,6 @@ hs_err_pid*
 
 ### Maven ###
 target/
-bin/
 test-output/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -113,5 +112,7 @@ buildNumber.properties
 
 #intellij
 .idea/
+*.iml
+*.yml
 
 # End of https://www.gitignore.io/api/java,maven,eclipse
